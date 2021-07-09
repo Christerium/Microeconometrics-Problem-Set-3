@@ -4,6 +4,7 @@ library(hrbrthemes)
 library(dplyr)
 library(tidyr)
 library(viridis)
+library(data.table)
 
 data <- read.csv("ps3.csv", header = T, sep = " ")
 
@@ -182,7 +183,7 @@ wh_sib <- melt(wh_sib,
 
 require(gridExtra)
 
-pdf("age.pdf", height = 4, width = 6)
+pdf("pictures/age.pdf", height = 4, width = 6)
 ggplot(bl_age) + 
   labs(title = "Quantile effects of Age", 
        y = expression(hat(beta)[tau]), 
@@ -201,7 +202,7 @@ ggplot(bl_age) +
                                    "White" = "dotdash"))
 dev.off()
 
-pdf("bl_inc.pdf", height = 4, width = 6)
+pdf("pictures/bl_inc.pdf", height = 4, width = 6)
 ggplot(bl_inc, 
        aes(x = rn, 
            y = value, 
@@ -212,7 +213,7 @@ ggplot(bl_inc,
   geom_line(size = 1.3) 
 dev.off()
 
-pdf("wh_inc.pdf", height = 4, width = 6)
+pdf("pictures/wh_inc.pdf", height = 4, width = 6)
 ggplot(wh_inc, 
        aes(x = rn, 
            y = value, 
@@ -223,7 +224,7 @@ ggplot(wh_inc,
   geom_line(size = 1.3) 
 dev.off()
 
-pdf("m_educ.pdf", height = 4, width = 6)
+pdf("pictures/m_educ.pdf", height = 4, width = 6)
 ggplot(bl_m_educ) + 
   labs(title = "Quantile effects of Education (Mother)", 
        y = expression(hat(beta)[tau]), 
@@ -241,7 +242,7 @@ ggplot(bl_m_educ) +
                                    "White" = "dotdash"))
 dev.off()
 
-pdf("d_educ.pdf", height = 4, width = 6)
+pdf("pictures/d_educ.pdf", height = 4, width = 6)
 ggplot(bl_d_educ) + 
   labs(title = "Quantile effects of Education (Father)", 
        y = expression(hat(beta)[tau]), 
@@ -259,7 +260,7 @@ ggplot(bl_d_educ) +
                                    "White" = "dotdash"))
 dev.off()
 
-pdf("weight.pdf", height = 4, width = 6)
+pdf("pictures/weight.pdf", height = 4, width = 6)
 ggplot(bl_weight) + 
   labs(title = "Quantile effects of Height", 
        y = expression(hat(beta)[tau]), 
@@ -277,7 +278,7 @@ ggplot(bl_weight) +
                                    "White" = "dotdash"))
 dev.off()
 
-pdf("bl_sib.pdf", height = 4, width = 6)
+pdf("pictures/bl_sib.pdf", height = 4, width = 6)
 ggplot(bl_sib, 
        aes(x = rn, 
            y = value, 
@@ -288,7 +289,7 @@ ggplot(bl_sib,
   geom_line(size = 1.3) 
 dev.off()
 
-pdf("wh_sib.pdf", height = 4, width = 6)
+pdf("pictures/wh_sib.pdf", height = 4, width = 6)
 ggplot(wh_sib, 
        aes(x = rn, 
            y = value, 
