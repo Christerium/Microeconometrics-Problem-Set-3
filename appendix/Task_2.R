@@ -67,6 +67,7 @@ plot_data <- data.frame(x = y,
                         unexplained = unexplained_part)
 
 size = 1.3
+pdf("pictures/decomp.pdf", height = 4, width = 6)
 ggplot(plot_data, aes(x = y)) + 
   labs(title = "Decomposition differences in the propabilities 
        between black and white",
@@ -92,6 +93,6 @@ ggplot(plot_data, aes(x = y)) +
                         values = c("Total" = "solid", 
                                    "Explain" = "dashed", 
                                    "Unexplain" = "dotdash"))
-
+dev.off()
 
 

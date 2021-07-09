@@ -97,12 +97,14 @@ dev.off()
 
 diff <- data.frame(x = y, y = bl_pred_df$y - wh_pred_df$y)
 
+pdf("pictures/diff.pdf", height = 4, width = 6)
 ggplot(diff, aes(x)) + 
   geom_line(aes(y = y), size = size) + 
   labs(title = "Difference in distribution",
        x = "STS7 Score",
        y = expression("F"["Y"]^"Black"*"(y)" -
                         "F"["Y"]^"White"*"(y)"))
+dev.off()
 
 # Bonus
 tau_seq <- seq(0.1, 0.9, 0.1)
