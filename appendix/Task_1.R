@@ -10,6 +10,7 @@ data <- read.csv("ps3.csv", header = T, sep = " ")
 
 data$black = factor(data$black)
 
+pdf("pictures/hist.pdf", height = 4, width = 6)
 ggplot(data, aes(STS7)) +
   geom_histogram(aes(y = ..density.., fill = black), 
                  alpha = 0.6, 
@@ -17,6 +18,7 @@ ggplot(data, aes(STS7)) +
   labs(title = "Histogram of the STS7 test scores") +
   scale_fill_discrete(name = "black", 
                       labels = c("White Children", "Black Children"))
+dev.off()
 
 attach(data)
 
@@ -55,6 +57,7 @@ bl_pred_df <- data.frame(x = y, y = bl_pred_list)
 wh_pred_df <- data.frame(x = y, y = wh_pred_list)
 
 size = 1.2
+pdf("pictures/ecdf.pdf", height = 4, width = 6)
 ggplot(data, aes(STS7)) + 
   ggtitle("CDF's of the STS7 test results and its estimates split by ethnicity") +
   stat_ecdf(aes(colour='All', linetype = "All"), geom = "step", size=size) +
@@ -90,6 +93,7 @@ ggplot(data, aes(STS7)) +
                                    "White" = "solid", 
                                    "Black_est" = "dotdash",
                                    "White_est" = "dotdash"))
+dev.off()
 
 diff <- data.frame(x = y, y = bl_pred_df$y - wh_pred_df$y)
 
