@@ -1,0 +1,296 @@
+\documentclass[english,12pt,a4paper, svgnames]{article} % evtl. besser 11 pt
+\usepackage[utf8]{inputenc} % bei Nutzung unter Linux oder anderen UTF-8 Systemen
+%\usepackage[ansinew]{inputenc} % bei Nutzung unter Windows
+%\usepackage[latin1]{inputenc}
+\usepackage{hyperref}
+\usepackage{lmodern}
+\usepackage{textcomp}
+\usepackage{xspace}
+\usepackage{longtable}
+\usepackage[onehalfspacing]{setspace}
+\usepackage{rotating}
+\usepackage{listings} % source code printing
+\usepackage{graphicx, color} %%For loading graphic files
+\usepackage{fancyhdr} %%Fancy headings
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage[font=small,labelfont=bf,format=hang]{caption}
+\usepackage{pgfplots}
+\usepackage{afterpage}
+\usepackage{pgfplotstable}
+\pgfplotsset{compat=newest}
+\usepackage{booktabs,colortbl}
+\usepackage[english]{babel}
+\usepackage{float}
+\usepackage[left=2.9cm,right=2.9cm,top=3cm,bottom=3cm]{geometry}
+\usepackage{multirow}
+\usepackage{appendix}
+\usepackage[T1]{fontenc}
+\usepackage{csquotes}
+\usepackage[style=apa,maxbibnames=3,minbibnames=1,backend=biber,doi=false,isbn=false,url=false,urldate=comp,dateabbrev=false]{biblatex}
+\usepackage{pdfpages}
+\usepackage{flafter}
+\usepackage{pdflscape}
+\usepackage{easyfig}
+\usepackage{adjustbox}
+\usepackage[T1]{fontenc}
+\usepackage{selinput}
+\usepackage[justification=centering]{caption}
+\usepackage{comment}
+\usepackage{subcaption}
+\usepackage{caption}
+\usepackage[nottoc]{tocbibind}
+
+\usepackage{appendix}
+\input{listings-stata.tex}
+\lstMakeShortInline[columns=fixed]|
+
+\usepgfplotslibrary{groupplots} % LATEX and plain TEX
+\usepgfplotslibrary[groupplots] % ConTEXt
+\usetikzlibrary{pgfplots.groupplots} % LATEX and plain TEX
+\usetikzlibrary[pgfplots.groupplots] % ConTEXt
+\usetikzlibrary{shapes,arrows}
+
+\lstdefinestyle{R}
+{
+  language=R,                     % <===================================
+  basicstyle=\small\ttfamily,
+  numbers=left,                   % where to put the line-numbers
+  backgroundcolor=\color{white},  % choose the background color
+  frame=single,                   % frame around code
+  rulecolor=\color{black},        % if not set, the frame-color may be changed on line-breaks within not-black text
+  tabsize=1,                      % sets default tabsize
+  breaklines=true,                % sets automatic line breaking
+  breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+  keywordstyle=\color{Blue},      % keyword style
+  commentstyle=\color{Green},     % comment style
+  stringstyle=\color{ForestGreen} % string literal style
+}
+
+
+
+
+% *****************************************************************
+% Estout related things
+% *****************************************************************
+\newcommand{\sym}[1]{\rlap{#1}}% Thanks to David Carlisle
+
+\let\estinput=\input% define a new input command so that we can still flatten the document
+
+\newcommand{\estwide}[3]{
+		\vspace{.75ex}{
+			\begin{tabular*}
+			{\textwidth}{@{\hskip\tabcolsep\extracolsep\fill}l*{#2}{#3}}
+			\toprule
+			\estinput{#1}
+			\bottomrule
+			\addlinespace[.75ex]
+			\end{tabular*}
+			}
+		}	
+
+\newcommand{\estauto}[3]{
+		\vspace{.75ex}{
+		\begin{center}
+			\begin{tabular}{l*{#2}{#3}}
+			\toprule
+			\estinput{#1}
+			\bottomrule
+			\addlinespace[.75ex]
+			\end{tabular}
+		\end{center}
+			}
+		}
+
+% Allow line breaks with \\ in specialcells
+	\newcommand{\specialcell}[2][c]{%
+	\begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
+
+% *****************************************************************
+% Custom subcaptions
+% *****************************************************************
+% Note/Source/Text after Tables
+\newcommand{\figtext}[1]{
+	\vspace{-1.9ex}
+	\captionsetup{justification=justified,font=footnotesize}
+	\caption*{\hspace{6pt}\hangindent=1.5em #1}
+	}
+\newcommand{\fignote}[1]{\figtext{\emph{Note:~}~#1}}
+
+\newcommand{\figsource}[1]{\figtext{\emph{Source:~}~#1}}
+
+% Add significance note with \starnote
+\newcommand{\starnote}{\figtext{* p < 0.1, ** p < 0.05, *** p < 0.01. Standard errors in parentheses.}}
+
+% *****************************************************************
+% siunitx
+% *****************************************************************
+\usepackage{siunitx} % centering in tables
+	\sisetup{
+		detect-mode,
+		tight-spacing		= true,
+		group-digits		= false ,
+		input-signs		= ,
+		input-symbols		= ( ) [ ] - + *,
+		input-open-uncertainty	= ,
+		input-close-uncertainty	= ,
+		table-align-text-post	= false
+        }
+
+
+%\setlength{\parindent}{0pt} % Einzug in erster Zeile des Absatzes auf 0
+
+\newcommand{\ts}{\textsuperscript} % Befehl erstellt th superscripts
+\newcommand{\C}{\,^{\circ}C} % Befehl erzeugt °C
+\def\TReg{\textsuperscript{\textregistered}} % Befehl erzeugt R-Symbol
+\def\TCop{\textsuperscript{\textcopyright}} % Befehl erzeugt C-Symbol
+\def\TTra{\textsuperscript{\texttrademark}} % Befehl erzeugt TM-Symbol
+
+\newcommand{\settocdepth}[1]{%
+  \addtocontents{toc}{\protect\setcounter{tocdepth}{#1}}} % Die einzelnen Anhänge sollen nicht im Inhaltsverzeichnis erscheinen.
+
+\renewcommand{\theequation}{\arabic{section}.\arabic{equation}} % Nummerierung der Gleichungen nach Kapitel.Gleichungsnummer
+\renewcommand\thefigure{\arabic{section}.\arabic{figure}} % Nummerierung der Abbildungen nach Kapitel.Abbildungsnummer
+\renewcommand\thetable{\arabic{section}.\arabic{table}} % Nummerierung der Tabellen nach Kapitel.Tabellennummer
+\let\stdsection\section % Jedes Kapitel auf einer neuen Seite beginnen
+\renewcommand\section{\clearpage\newpage\stdsection} % Jedes Kapitel auf einer neuen Seite beginnen
+
+
+
+
+\bibliography{literatur} % Literaturdaten befinden sich in literatur.bib
+\input{biblatex.conf}
+
+\begin{document}
+\lstset{xleftmargin=1cm, language=Stata, style=stata-editor}
+% insert coversheet
+\input{coversheet.tex}
+
+% set page margins for document except coversheet
+\newgeometry{left=2.2cm,right=2.2cm,top=3cm,bottom=3cm} 
+
+\input{firstPages.tex} % Titelseite, Abstract, Zusammenfassung, Inhaltsverzeichnis, Formelzeichen und Indizes, Abkürzungen
+
+\section{Task I and Task II}\label{sec:Task_I_II}
+The R-Code to these Tasks can be found in the Appendix \ref{A:exc1_2}.\\
+
+The STS7 score distribution in Figure \ref{fig:hist} leans a bit more to higher scores for white participates than for black participants. This already shows us that their might be heterogeneity which might be of interest. Running a quantile regression in R with the command "rq" regressing all other variables on STS7 did provide estimates for a $\tau = 0.5$, but with the warning that the solution might not be unique. A qunatile regression might not be appropriate in this case, because it only works on continuous variables. STS7 though is a discrete variable, which means we cannot directly work with a quantile regression, but rather we need to work with the distribution regression and convert it into a quantile regression. 
+
+\Figure[caption={STS7 score distribution of blacks and whites},placement={!htb}, label={fig:hist}]{pictures/hist.pdf}
+
+To take a better look at the differences between the score distribution of blacks and whites I have plotted the empirical distribution function in Figure \ref{fig:ecdf}.
+
+To estimate the conditional distribution of the test scores by using the distribution regression, I have obtained a grid of unique integer values disregarding the smallest and largest test scores (-4, -3,..., 3). Afterwards I have calculated the estimates $\hat{\beta}$ using the logit function $F_x^j(y) = \Lambda(x'\beta)$ with a outcome
+dummy variable which takes the value of 1 if $STS7_i \geq y$ and zero otherwise. In the next step I have predicted $F_{\bar{x}}^j$ using the estimates $\hat{\beta}$ using the "predict" command in R, using only the means of the covariates. The results have been plotted in Figure \ref{fig:ecdf} (dotted lines).
+
+\begin{figure}[!htb]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{pictures/ecdf.pdf}
+  \caption{ecdf and cdf of the STS7 test scores of black and white participants}
+  \label{fig:ecdf}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{pictures/diff.pdf}
+  \caption{Difference in distribution}
+  \label{fig:diff}
+\end{subfigure}
+\end{figure}
+
+The Figure \ref{fig:ecdf} shows that the estimated models are relatively close to the actual data. The Figure \ref{fig:diff} shows the difference between the two estimated distributions. The biggest gap is around a STS7 test score of 0 with blacks having a nearly 45 percentage higher probability of getting at most a test score of 0. These results show that there is a racial gap in the test scores which increases with higher test scores till score 0 where it peaks with a 45 percentage higher probability of scoring 0 or less points. These figures show that there is a racial gap in the STS7 test scores which is the smallest at the lower and upper end of the possible score values. 
+
+\subsection{Bonus}
+For the bonus task, the respective quantile STS7 scores for $\tau \epsilon [0.1, 0.9]$ in 0.1 steps have been calculated. With this finer grid 9 new models have been estimated like in the tasks before. The respective estimates for the covariates for each level of $\tau$ have been plotted in Figure \ref{fig:age} to \ref{fig:sib}. 
+
+
+% Age
+\Figure[caption={Quantile effects of Age},placement={!htb}, label={fig:age}, scale = 0.9]{pictures/age.pdf}
+
+% Weight
+\Figure[caption={Quantile effects of Height},placement={!htb}, label={fig:weight}, scale = 0.9]{pictures/weight.pdf}
+
+% Inc
+\begin{figure}[!htb]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{pictures/bl_inc.pdf}
+  \caption{Quantile effects of Income (Black)}
+  \label{fig:wh_inc}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{pictures/wh_inc.pdf}
+  \caption{Quantile effects of Income (White)}
+  \label{fig:wh_inc}
+\end{subfigure}
+\caption{Quantile effects for the different income levels}
+\label{fig:inc}
+\end{figure}
+
+% Educ
+\begin{figure}[!htb]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{pictures/d_educ.pdf}
+  \caption{Quantile effects of Education (Mother)}
+  \label{fig:d_educ}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{pictures/m_educ.pdf}
+  \caption{Quantile effects of Education (Father)}
+  \label{fig:m_educ}
+\end{subfigure}
+\label{fig:educ}
+\caption{Quantile effects for the different education levels}
+\end{figure}
+
+% Siblings
+\begin{figure}[!htb]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{pictures/bl_sib.pdf}
+  \caption{Quantile effects of Siblings (Black)}
+  \label{fig:bl_sib}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{pictures/wh_sib.pdf}
+  \caption{Quantile effects of Siblings (White)}
+  \label{fig:wh_sib}
+\end{subfigure}
+\label{fig:sib}
+\caption{Quantile effects for the different numbers of siblings}
+\end{figure}
+
+\section{Task III and Task IV}
+The R-Code to this Exercise can be found in the Appendix \ref{A:exc3}.\\
+
+The black-white test gap shown in the previous section can be split into an explained and a unexplained part. These are calculated by: 
+\begin{equation*}
+    F^W(y) - F^B(y) = \underbrace{(F^W(y) - F^{W \mid B}(y))}_{\text{explained part}} + \underbrace{F^{W \mid B}(y) - F^B(y)}_{\text{unexplained part}}
+\end{equation*}
+
+The probability distribution for white participants predicted on the background of black participants $F^{W \mid B}(y)$ is similarly calculated like the conditional probabilities in Task II, with the main difference that the estimated model for white participants was predicted on the sample of black participants. Furthermore the mean of the predicted values have been taken.
+
+\Figure[caption={ecdf and cdf of the STS7 test scores of black and white participants},placement={!htb}, label={fig:decomp}]{pictures/decomp.pdf}
+
+In the Figure \ref{fig:decomp} the total distributional difference is shown with the decomposition in an explained and in a unexplained part. The explained part represents the test score differences which can be traced back to the differences in background characteristics (age of mother, family income, parental education, number of siblings and birth weight of the child). The unexplained part contains all differences which can not be explained by these characteristics. The unexplained part might contain potentially racial discriminating parts, but there are still a lot of different aspects which are not taken account of. 
+
+Even though the data is collected over a 6 year period, the time frame is considered too short to have significant impact on the results. A causal interpretation would need to control for unobserved heterogeneity which is not possible with the cross-sectional data. 
+Statistically tools to control for unobserved heterogeneity like fixed effects or random effects require panel data.
+%----------------------------------------------------------------------------------------%
+% Literatur
+\newpage
+\listoffigures
+\newpage
+\appendix
+\section{Appendix: Code for Task 1 and 2}\label{A:exc1_2}
+\lstinputlisting[style=R]{appendix/Task_1.R}
+\section{Appendix: Code for Task 3 and 4}\label{A:exc3}
+\lstinputlisting[style=R]{appendix/Task_2.R}
+\end{document}

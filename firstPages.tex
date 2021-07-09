@@ -1,0 +1,71 @@
+
+
+\pagenumbering{alph}
+
+% Konfiguration für Kopfzeile
+\renewcommand{\sectionmark}[1]{\markright{\thesection.\ #1}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand*\MakeUppercase[1]{#1}
+\fancyhead[L]{\leftmark}
+\fancyhead[R]{\thepage}
+\fancyfoot[C]{}
+\pagestyle{fancy}
+
+% Konfiguration Inhaltsverzeichnis
+\makeatletter
+\renewcommand*\tableofcontents{\@starttoc{toc}}
+\makeatother
+
+\pagenumbering{roman}
+%Eidesstattliche Versicherung
+%\newpage
+%\section*{Eidesstattliche Erklärung}
+%\fancyhead[L]{Eidesstattliche Erklärung}
+%\addcontentsline{toc}{section}{Eidesstattliche Erklärung} 
+%Ich erkläre an Eides statt, dass ich die vorliegende Masterarbeit selbstständig und ohne fremde Hilfe verfasst, andere als die angegebenen Quellen und Hilfsmittel nicht benutzt bzw. die wörtlich oder sinngemäß entnommenen Stellen als solche kenntlich gemacht habe.
+%Die vorliegende Masterarbeit ist mit dem elektronisch übermittelten Textdokument identisch.
+
+%\vspace{2.5cm}
+%\parbox{4cm}{\hrule
+%\strut \footnotesize Ort, Datum} \hfill\parbox{4cm}{\hrule
+%\strut \footnotesize Unterschrift}
+
+%\section*{Zusammenfassung}
+%\fancyhead[L]{Zusammenfassung}
+%\addcontentsline{toc}{section}{Zusammenfassung} 
+
+%\section*{Abstract}
+%\fancyhead[L]{Abstract}
+%\addcontentsline{toc}{section}{Abstract} 
+%Bitte die britische Schreibweise verwenden.
+%Inhaltsverzeichnis
+\newpage
+\fancyhead[L]{Inhaltsverzeichnis}
+\tableofcontents
+%\addcontentsline{toc}{section}{Inhaltsverzeichnis}
+% Verzeichnisse
+\renewcommand{\arraystretch}{2} % doppelter Zeilenabstand für Tabellen in den Verzeichnissen
+% Formelzeichen und Indizes
+%\newpage
+%\section*{Formelzeichen und Indizes}
+%\fancyhead[L]{Formelzeichen und Indizes}
+%\addcontentsline{toc}{section}{Formelzeichen und Indizes} 
+%\input{symbols.tex}
+
+% Abkürzungen
+%\newpage
+%\section*{Abkürzungen}
+%\fancyhead[L]{Abkürzungen}
+%\addcontentsline{toc}{section}{Abkürzungen} 
+%\input{abbreviations.tex}
+
+\renewcommand{\arraystretch}{1.1} % Zurück zu 1,1-fachem Zeilenabstand in Tabellen im normalen Inhalt
+
+%Inhalt
+\newpage
+\fancyhead[L]{\leftmark}
+\pagenumbering{arabic}
+\setcounter{page}{1} 
+
+\numberwithin{figure}{section}
+\numberwithin{table}{section}
